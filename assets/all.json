@@ -1,0 +1,104 @@
+{
+    "list": [
+        {
+            "name": "\u7eaa \u5b57\u5934\u90ae\u7968", 
+            "label": "c"
+        }, 
+        {
+            "name": "\u7279 \u5b57\u5934\u90ae\u7968", 
+            "label": "s"
+        }, 
+        {
+            "name": "\u6587\u9769 \u90ae\u7968", 
+            "label": "w"
+        }, 
+        {
+            "name": "\u7f16\u53f7 \u90ae\u7968", 
+            "label": "n"
+        }, 
+        {
+            "name": "J \u5b57\u5934\u90ae\u7968", 
+            "label": "J"
+        }, 
+        {
+            "name": "T \u5b57\u5934\u90ae\u7968", 
+            "label": "T"
+        }, 
+        {
+            "name": "\u7f16\u5e74\u90ae\u7968\uff081992-1996\uff09", 
+            "label": "B1"
+        }, 
+        {
+            "name": "\u7f16\u5e74\u90ae\u7968\uff081997-2001\uff09", 
+            "label": "B2"
+        }, 
+        {
+            "name": "\u7f16\u5e74\u90ae\u7968\uff082002-2006\uff09", 
+            "label": "B3"
+        }, 
+        {
+            "name": "\u7f16\u5e74\u90ae\u7968\uff082007-2011\uff09", 
+            "label": "B4"
+        }, 
+        {
+            "name": "\u5c0f\u672c\u7968", 
+            "label": "SB"
+        }, 
+        {
+            "name": "\u7279\u8272\u7248\u7968\uff081980-2005\uff09", 
+            "label": "BP1"
+        }, 
+        {
+            "name": "\u7279\u8272\u7248\u7968\uff082006-2010\uff09", 
+            "label": "BP2"
+        }, 
+        {
+            "name": "\u666e\u901a \u90ae\u7968", 
+            "label": "p"
+        }, 
+        {
+            "name": "\u8d3a\u5e74 \u90ae\u7968", 
+            "label": "hn"
+        }, 
+        {
+            "name": "\u5305\u88f9 \u90ae\u7968", 
+            "label": "b"
+        }, 
+        {
+            "name": "\u6539\u503c \u90ae\u7968", 
+            "label": "g"
+        }, 
+        {
+            "name": "\u822a\u7a7a \u90ae\u7968", 
+            "label": "h"
+        }, 
+        {
+            "name": "\u519b\u7528 \u90ae\u7968", 
+            "label": "jy"
+        }, 
+        {
+            "name": "\u6b20\u8d44 \u90ae\u7968", 
+            "label": "q"
+        }, 
+        {
+            "name": "\u81ea\u52a8\u5316 \u90ae\u7968", 
+            "label": "z"
+        }, 
+        {
+            "name": "\u52a0\u5b57\u90ae\u54c1", 
+            "label": "PJZ"
+        }, 
+        {
+            "name": "\u7279\u4f9b\u90ae\u54c1", 
+            "label": "DJ"
+        }, 
+        {
+            "name": "\u5151\u5956\u90ae\u54c1", 
+            "label": "JDJ"
+        }, 
+        {
+            "name": "\u8bc4\u9009\u90ae\u54c1", 
+            "label": "JPX"
+        }
+    ]
+}
