@@ -1,8 +1,7 @@
 <resources>
 
-    <string name="app_name">中国邮票</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">APIDemo</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">APIDemo</string>
 
 </resources>
