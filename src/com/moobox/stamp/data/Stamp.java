@@ -1,10 +1,10 @@
 package com.moobox.stamp.data;
 
-import java.util.HashMap;
+import org.json.JSONObject;
 
 public class Stamp {
-	
-	HashMap<String, String> basicInfo;
-	
-
+	public String identifier;
+	public String name;
+	public String publishDate;
+	public JSONObject jsonObject;
 }

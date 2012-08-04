@@ -15,7 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.moobox.stamp.adapter.MainCatalogAdapter;
+import com.moobox.stamp.adapter.CatalogAdapter;
 import com.moobox.stamp.data.Catalog;
 import com.moobox.stamp.data.CatalogList;
 import com.moobox.stamp.utils.FileUtils;
@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				L.e(catalog.name + ":" + catalog.label);
 			}
 			mDataset = list.list;
-			MainCatalogAdapter adapter = new MainCatalogAdapter(mDataset);
+			CatalogAdapter adapter = new CatalogAdapter(mDataset);
 			ListView listView = (ListView) findViewById(R.id.list_view);
 			listView.setAdapter(adapter);
 
