@@ -25,32 +25,12 @@
             "name": "T \u5b57\u5934\u90ae\u7968"
         }, 
         {
-            "label": "B1", 
-            "name": "\u7f16\u5e74\u90ae\u7968\uff081992-1996\uff09"
-        }, 
-        {
-            "label": "B2", 
-            "name": "\u7f16\u5e74\u90ae\u7968\uff081997-2001\uff09"
-        }, 
-        {
-            "label": "B3", 
-            "name": "\u7f16\u5e74\u90ae\u7968\uff082002-2006\uff09"
-        }, 
-        {
-            "label": "B4", 
-            "name": "\u7f16\u5e74\u90ae\u7968\uff082007-2011\uff09"
+            "label": "BN", 
+            "name": "\u7f16\u5e74 \u90ae\u7968"
         }, 
         {
             "label": "SB", 
             "name": "\u5c0f\u672c\u7968"
-        }, 
-        {
-            "label": "BP1", 
-            "name": "\u7279\u8272\u7248\u7968\uff081980-2005\uff09"
-        }, 
-        {
-            "label": "BP2", 
-            "name": "\u7279\u8272\u7248\u7968\uff082006-2010\uff09"
         }, 
         {
             "label": "p", 
@@ -83,6 +63,10 @@
         {
             "label": "z", 
             "name": "\u81ea\u52a8\u5316 \u90ae\u7968"
+        }, 
+        {
+            "label": "BP", 
+            "name": "\u7279\u8272\u7248\u7968"
         }, 
         {
             "label": "PJZ", 

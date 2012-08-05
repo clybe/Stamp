@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_name"
+    android:layout_width="fill_parent"
+    android:layout_height="45dp"
+    android:background="@drawable/bg_menu"
+    android:drawablePadding="10dp"
+    android:drawableRight="@drawable/ic_more"
+    android:gravity="center_vertical"
+    android:maxLines="2"
+    android:paddingLeft="8dp"
+    android:paddingRight="6dp"
+    android:text="纪字头纪字头"
+    android:textColor="@color/color_catalog"
+    android:textSize="@dimen/text_size_large" />

@@ -14,10 +14,9 @@ import com.moobox.stamp.utils.L;
 
 public class FlyinAppMenu extends RelativeLayout {
 
-	private final int ANIMATION_TIME = 400;
+	private final int ANIMATION_TIME = 300;
 
 	private View mMainView;
-	private View mFlyinView;
 
 	private boolean mIsOpen = false;
 
@@ -30,6 +29,7 @@ public class FlyinAppMenu extends RelativeLayout {
 	private boolean mReceiveAction = false;
 
 	private boolean mEnableClick = true;
+	
 
 	public FlyinAppMenu(Context context) {
 		super(context, null);
@@ -52,11 +52,11 @@ public class FlyinAppMenu extends RelativeLayout {
 		return mIsOpen;
 	}
 
-	public void changeState(int offset) {
-		changeState(offset, isOpen());
+	public void changeState() {
+		changeState(isOpen());
 	}
 
-	public void changeState(int offset, boolean isOpen) {
+	public void changeState(boolean isOpen) {
 		mScroller.abortAnimation();
 		requestLayout();
 		if (isOpen) {
@@ -116,7 +116,6 @@ public class FlyinAppMenu extends RelativeLayout {
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		super.onLayout(changed, l, t, r, b);
 		mMainView = findViewById(R.id.main_view);
-		mFlyinView = findViewById(R.id.flyin_view);
 	}
 
 	@Override

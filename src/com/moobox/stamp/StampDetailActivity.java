@@ -21,104 +21,155 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.moobox.stamp.utils.FileUtils;
 import com.moobox.stamp.utils.L;
 
 public class StampDetailActivity extends Activity implements OnClickListener {
 
+	private TextView mTextTitle;
 	private ImageView mImageStamp;
 	private ProgressBar mImageProgress;
 
 	private DownloadTask mDownloadTask;
 	private boolean mIsDownloading = true;
 	private int mProgress = 0;// 0-100
-	private String downloadurl = "";
+	private LinearLayout mRootContent1;
+	private LinearLayout mRootContent2;
 
 	private static final int Connection_Timeout = 10000;
 
+	private int color;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stamp_detail);
 
+		findViewById(R.id.btn_back).setOnClickListener(this);
+		mTextTitle = (TextView) findViewById(R.id.text_title);
 		mImageStamp = (ImageView) findViewById(R.id.image_stamp);
 		mImageProgress = (ProgressBar) findViewById(R.id.image_progress);
-
-		mDownloadTask = new DownloadTask();
-		mDownloadTask.execute("http://www.zhuliang.name/photo/bianhao/N7.jpg");
-
+		mRootContent1 = (LinearLayout) findViewById(R.id.root_content_1);
+		mRootContent2 = (LinearLayout) findViewById(R.id.root_content_2);
+		color= Color.parseColor("#523B0C");
 		mImageStamp.setOnClickListener(this);
-
-		// <key>000编号</key>
-		// <string>纪2</string>
-		// <key>001版别</key>
-		// <string>雕刻版(无背胶)</string>
-		// <key>002名称</key>
-		// <string>中国人民政治协商会议纪念</string>
-		// <key>003全套枚数</key>
-		// <string>4</string>
-		// <key>004发行日期</key>
-		// <string>1950-2-1(原版) 1955-1-10(再版)</string>
-		// <key>005全套面值</key>
-		// <string>950圆(旧币)</string>
-		// <key>006全套售价</key>
-		// <string>950圆(旧币)</string>
-		// <key>007发行机构</key>
-		// <string>华北邮政管理总局(原版)邮电部(再版)</string>
-		// <key>008印制机构</key>
-		// <string>原版：(1)(2)大东书局上海印刷厂(3)(4)北京中国人民印刷厂 再版：北京人民印刷厂</string>
-		// <key>009雕刻者</key>
-		// <string>贾炳昆、高品璋、贾志谦、孙鸿年、刘国桐</string>
-		// <key>010设计者</key>
-		// <string>张仃、钟灵</string>
-		// <key>011整版枚数</key>
-		// <string>(4-1)(4-2)50(10×5)(4-3)(4-4)50(5×10)</string>
-		// <key>012备注</key>
-		// <string>下面的发行量为原版票发行量，再版票发行量不详。再版票的旧票非常罕见。</string>
-		// <key>100图片</key>
-		// <string>photo/laoji/c002.jpg</string>
-
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-			String fileName = extras.getString("file_name");
-			L.e("fileName:" + fileName);
-			try {
-				InputStream inputStream = getAssets().open(fileName);
-				String allData = FileUtils.InputStreamToString(inputStream);
-				L.e(allData);
-				JSONObject jsonObject = new JSONObject(allData);
-				JSONArray stampArray = jsonObject.getJSONArray("stamps");
-				ArrayList<String> sortKeys = new ArrayList<String>();
-				for (int i = 0; i < stampArray.length(); i++) {
-					L.e(i + "-----------------------------");
-					sortKeys.clear();
-					JSONObject jsObject = stampArray.getJSONObject(i);
-					for (Iterator<String> keys = jsObject.keys(); keys
-							.hasNext();) {
-						sortKeys.add(keys.next());
-					}
-					Collections.sort(sortKeys);
+			String data = extras.getString("data");
+			String title = extras.getString("title");
+			mTextTitle.setText(title);
 
-					for (String key : sortKeys) {
-						Object object = jsObject.get(key);
-						if (object instanceof String) {
-							L.e(key + ":" + (String) object);
+			try {
+				JSONObject jsObject = new JSONObject(data);
+				ArrayList<String> sortKeys = new ArrayList<String>();
+				for (@SuppressWarnings("unchecked")
+				Iterator<String> keys = jsObject.keys(); keys.hasNext();) {
+					sortKeys.add(keys.next());
+				}
+				Collections.sort(sortKeys);
+
+				for (String key : sortKeys) {
+					Object object = jsObject.get(key);
+					if (object instanceof String) {
+						L.e(key + ":" + (String) object);
+						if (!key.equals("100图片")) {
+							addContent(key.substring(3), (String) object);
+						}
+					} else if (object instanceof JSONArray) {
+						ArrayList<String> detailSortKeys = new ArrayList<String>();
+						JSONArray jsArray = (JSONArray) object;
+						if (jsArray.length() > 0) {
+							JSONObject jsObj = jsArray.getJSONObject(0);
+							for (@SuppressWarnings("unchecked")
+							Iterator<String> keys = jsObj.keys(); keys
+									.hasNext();) {
+								detailSortKeys.add(keys.next());
+							}
+							Collections.sort(detailSortKeys);
+							addContent(null, detailSortKeys);
+
+							for (int i = 0; i < jsArray.length(); i++) {
+								addContent(jsArray.getJSONObject(i),
+										detailSortKeys);
+							}
 						}
 					}
 				}
+
+				mDownloadTask = new DownloadTask();
+				mDownloadTask.execute("http://www.zhuliang.name/"
+						+ jsObject.optString("100图片"));
+
 			} catch (Exception e) {
 				L.e("exception:" + e.getMessage());
 			}
-
 		}
+	}
 
+	private void addContent(String key, String value) {
+		View view = LayoutInflater.from(this).inflate(
+				R.layout.list_item_detail_1, mRootContent1, false);
+		TextView textTitle = (TextView) view.findViewById(R.id.text_title);
+		TextView textContent = (TextView) view.findViewById(R.id.text_content);
+		textTitle.setText(key);
+		textContent.setText(value);
+		mRootContent1.addView(view);
+	}
+
+	private void addContent(JSONObject jsonObject, ArrayList<String> titles) {
+		View view = LayoutInflater.from(this).inflate(
+				R.layout.list_item_detail_2, mRootContent2, false);
+		TextView text1 = (TextView) view.findViewById(R.id.text_1);
+		TextView text2 = (TextView) view.findViewById(R.id.text_2);
+		TextView text3 = (TextView) view.findViewById(R.id.text_3);
+		TextView text4 = (TextView) view.findViewById(R.id.text_4);
+		TextView text5 = (TextView) view.findViewById(R.id.text_5);
+		TextView text6 = (TextView) view.findViewById(R.id.text_6);
+
+		try {
+			if (jsonObject == null) {
+				text1.setTypeface(null, Typeface.BOLD);
+				text2.setTypeface(null, Typeface.BOLD);
+				text3.setTypeface(null, Typeface.BOLD);
+				text4.setTypeface(null, Typeface.BOLD);
+				text5.setTypeface(null, Typeface.BOLD);
+				text6.setTypeface(null, Typeface.BOLD);
+				text1.setTextColor(color);
+				text2.setTextColor(color);
+				text3.setTextColor(color);
+				text4.setTextColor(color);
+				text5.setTextColor(color);
+				text6.setTextColor(color);
+				text1.setText(titles.get(0).substring(1));
+				text2.setText(titles.get(1).substring(1));
+				text3.setText(titles.get(2).substring(1));
+				text4.setText(titles.get(3).substring(1));
+				text5.setText(titles.get(4).substring(1));
+				text6.setText(titles.get(5).substring(1));
+
+			} else {
+				text1.setText(jsonObject.optString(titles.get(0)));
+				text2.setText(jsonObject.optString(titles.get(1)));
+				text3.setText(jsonObject.optString(titles.get(2)));
+				text4.setText(jsonObject.optString(titles.get(3)));
+				text5.setText(jsonObject.optString(titles.get(4)));
+				text6.setText(jsonObject.optString(titles.get(5)));
+			}
+
+		} catch (Exception e) {
+		}
+		mRootContent2.addView(view);
 	}
 
 	private class DownloadTask extends AsyncTask<String, Integer, String> {
@@ -165,6 +216,10 @@ public class StampDetailActivity extends Activity implements OnClickListener {
 
 				bytestream.close();
 				File file = FileUtils.getPicFile();
+				if (file.exists()) {
+					file.delete();
+				}
+				file.createNewFile();
 				BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
 						new FileOutputStream(file, true), 8 * 1024);
 				bufferedOutputStream.write(imgdata);
@@ -229,6 +284,9 @@ public class StampDetailActivity extends Activity implements OnClickListener {
 				startActivity(new Intent(StampDetailActivity.this,
 						TouchImageViewActivity.class));
 			}
+			break;
+		case R.id.btn_back:
+			finish();
 			break;
 
 		default:

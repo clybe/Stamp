@@ -1,6 +1,8 @@
 package com.moobox.stamp.utils;
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.os.AsyncTask.Status;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -13,9 +15,9 @@ public class UIUtils {
 	private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
 	private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
 
-	//找临界值可以尝试此方法，一堆if弱爆了
-	//whichScreen = Math.max(0, Math.min(whichScreen, getChildCount() - 1)); 
-	
+	// 找临界值可以尝试此方法，一堆if弱爆了
+	// whichScreen = Math.max(0, Math.min(whichScreen, getChildCount() - 1));
+
 	public static String getTimeAgo(long time, Context ctx) {
 		if (time < 1000000000000L) {
 			// if timestamp given in seconds, convert to millis
@@ -60,4 +62,10 @@ public class UIUtils {
 		}
 	}
 
+	public static void closeTask(
+			@SuppressWarnings("rawtypes") AsyncTask asyncTask) {
+		if (asyncTask != null && asyncTask.getStatus().equals(Status.RUNNING)) {
+			asyncTask.cancel(true);
+		}
+	}
 }

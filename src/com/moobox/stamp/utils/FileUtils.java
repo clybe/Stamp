@@ -10,9 +10,9 @@ import java.io.InputStreamReader;
 import android.os.Environment;
 
 public class FileUtils {
-	
+
 	static final String SDPath = "/stamp"; // Pic Cache dir
-	static final String PicName = "temp.png"; 
+	static final String PicName = "temp.png";
 
 	public static String InputStreamToByte(InputStream is) throws IOException {
 		ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
@@ -45,10 +45,9 @@ public class FileUtils {
 
 		return buffer.toString();
 	}
-	
+
 	public static File getCacheFolder() {
-		File file = new File(Environment.getExternalStorageDirectory()
-				+ SDPath);
+		File file = new File(Environment.getExternalStorageDirectory() + SDPath);
 		if (!file.exists()) {
 			file.mkdir();
 		}
@@ -62,7 +61,6 @@ public class FileUtils {
 	public static File getPicFile() throws IOException {
 		File folder = getCacheFolder();
 		File apkFile = new File(folder, PicName);
-		apkFile.createNewFile();
 		return apkFile;
 	}
 
