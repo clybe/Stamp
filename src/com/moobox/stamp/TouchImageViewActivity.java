@@ -2,14 +2,13 @@ package com.moobox.stamp;
 
 import java.io.IOException;
 
-import com.moobox.stamp.utils.FileUtils;
-import com.moobox.stamp.utils.L;
-import com.moobox.stamp.widgets.TouchImageView;
-
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+
+import com.moobox.stamp.utils.FileUtils;
+import com.moobox.stamp.utils.L;
+import com.moobox.stamp.widgets.TouchImageView;
 
 /**
  * zoom in/out image
@@ -17,7 +16,7 @@ import android.os.Bundle;
  * @author clybe
  * 
  */
-public class TouchImageViewActivity extends Activity {
+public class TouchImageViewActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

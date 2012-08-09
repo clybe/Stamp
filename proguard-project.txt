@@ -18,3 +18,31 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-libraryjars libs/android-support-v4.jar
+-libraryjars libs/jackson-all-1.8.10.jar
+-libraryjars libs/GoogleAdMobAdsSdk-6.1.0.jar
+-libraryjars libs/umeng_sdk.jar
+
+-keep class org.codehaus.** { *; }
+-keepnames class org.codehaus.jackson.** { *; }
+-keep class android.support.v4.** { *; }
+-keep public class * extends android.support.v4.**
+
+-keepattributes Signature,RuntimeVisibleAnnotations,AnnotationDefault,*Annotation*,EnclosingMethod
+
+-keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+
+-keep public class com.moobox.stamp.R$*{
+    public static final int *;
+}
+
+-keep class com.moobox.stamp.data.** {
+  public protected private *;
+}
+
+-dontwarn org.codehaus.jackson.**
+
+-keepnames class * implements java.io.Serializable

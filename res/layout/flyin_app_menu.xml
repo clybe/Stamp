@@ -1,106 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.moobox.stamp.widgets.FlyinAppMenu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_stamp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/flyin_view"
-        android:layout_width="200dp"
-        android:layout_height="fill_parent"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:drawSelectorOnTop="false"
-        android:fadingEdge="@null"
-        android:listSelector="@android:color/transparent" >
-    </ListView>
-
-    <RelativeLayout
-        android:id="@+id/main_view"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+    <com.moobox.stamp.widgets.FlyinAppMenu
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_stamp"
         android:orientation="vertical" >
 
-        <RelativeLayout
-            android:id="@+id/title_view"
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/bg_title" >
-
-            <ImageButton
-                android:id="@+id/btn_switch"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/btn_navi"
-                android:padding="5dp"
-                android:src="@drawable/ic_menu"
-                android:text="click" />
-
-            <View
-                android:id="@+id/img_logo"
-                android:layout_width="120dp"
-                android:layout_height="28dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/ic_logo" />
-
-            <TextView
-                android:id="@+id/text_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textColor="#CAC5B1"
-                android:textSize="@dimen/text_size_xlarge" />
-
-            <ImageButton
-                android:id="@+id/btn_about"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/btn_navi"
-                android:padding="5dp"
-                android:src="@drawable/ic_about"
-                android:text="click" />
-        </RelativeLayout>
-
-        <View
-            android:id="@+id/btn_search"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/title_view"
-            android:background="@drawable/ic_search" />
-
-        <EditText
-            android:id="@+id/edit_search"
-            android:layout_width="fill_parent"
-            android:layout_height="45dp"
-            android:layout_below="@id/title_view"
-            android:layout_toLeftOf="@id/btn_search"
-            android:hint="搜索"
-            android:inputType="text"
-            android:maxLines="1" />
-
         <ListView
-            android:id="@+id/list_view"
-            android:layout_width="fill_parent"
+            android:id="@+id/flyin_view"
+            android:layout_width="200dp"
             android:layout_height="fill_parent"
-            android:layout_below="@id/edit_search"
-            android:background="@android:color/white"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:dividerHeight="0dp"
             android:drawSelectorOnTop="false"
             android:fadingEdge="@null"
-            android:fastScrollEnabled="true"
             android:listSelector="@android:color/transparent" >
         </ListView>
-    </RelativeLayout>
 
-</com.moobox.stamp.widgets.FlyinAppMenu>
+        <RelativeLayout
+            android:id="@+id/main_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/title_view"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_title" >
+
+                <ImageButton
+                    android:id="@+id/btn_switch"
+                    android:layout_width="40dp"
+                    android:layout_height="31dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/btn_navi"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_menu"
+                    android:text="click" />
+
+                <View
+                    android:id="@+id/img_logo"
+                    android:layout_width="120dp"
+                    android:layout_height="28dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_logo" />
+
+                <TextView
+                    android:id="@+id/text_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#CAC5B1"
+                    android:textSize="@dimen/text_size_xlarge" />
+
+                <ImageButton
+                    android:id="@+id/btn_about"
+                    android:layout_width="40dp"
+                    android:layout_height="31dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/btn_navi"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_about"
+                    android:text="click" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/root_search"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/title_view"
+                android:background="@drawable/bg_search"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="4dp" >
+
+                <EditText
+                    android:id="@+id/edit_search"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edit_search"
+                    android:gravity="center_vertical"
+                    android:hint="搜索"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="5dp"
+                    android:textSize="15sp" />
+
+                <View
+                    android:id="@+id/btn_search"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/btn_search" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/root_search"
+                android:background="@android:color/white"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:drawSelectorOnTop="false"
+                android:fadingEdge="@null"
+                android:fastScrollEnabled="true"
+                android:listSelector="@android:color/transparent" >
+            </ListView>
+        </RelativeLayout>
+    </com.moobox.stamp.widgets.FlyinAppMenu>
+
+    <com.google.ads.AdView
+        android:id="@+id/ad"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="a1501f4f1c11a58"
+        ads:loadAdOnCreate="true" />
+
+</LinearLayout>

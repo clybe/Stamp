@@ -3,6 +3,7 @@ package com.moobox.stamp;
 import java.lang.reflect.Method;
 
 import com.moobox.stamp.utils.L;
+import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends BaseActivity {
 
 	private static final int DELAY = 1200;
 
@@ -18,7 +19,7 @@ public class SplashActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		MobclickAgent.onError(this);
 		new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
@@ -26,7 +27,7 @@ public class SplashActivity extends Activity {
 				if (msg.what == 1) {
 
 					Intent intent = new Intent(SplashActivity.this,
-							FlyinAppMenuActivity.class);
+							MainActivity.class);
 					startActivity(intent);
 
 					try {

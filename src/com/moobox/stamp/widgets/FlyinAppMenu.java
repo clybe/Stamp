@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 import com.moobox.stamp.R;
-import com.moobox.stamp.utils.L;
 
 public class FlyinAppMenu extends RelativeLayout {
 
@@ -29,7 +28,6 @@ public class FlyinAppMenu extends RelativeLayout {
 	private boolean mReceiveAction = false;
 
 	private boolean mEnableClick = true;
-	
 
 	public FlyinAppMenu(Context context) {
 		super(context, null);
@@ -41,7 +39,6 @@ public class FlyinAppMenu extends RelativeLayout {
 		mScroller = new Scroller(getContext(), new DecelerateInterpolator());
 		mTouchWidth = (int) (context.getResources().getDisplayMetrics().density * 48);
 		mOffset = (int) (context.getResources().getDisplayMetrics().density * 200);
-		L.e("mTouchWidth is " + mTouchWidth);
 	}
 
 	public synchronized void setOpen(boolean state) {
@@ -85,14 +82,11 @@ public class FlyinAppMenu extends RelativeLayout {
 				mEnableClick = false;
 			}
 
-			L.d("currentX:" + currentX + ", scrollerX:"
-					+ mMainView.getScrollX());
 			if ((currentX > -mMainView.getScrollX()) && currentY > mTouchWidth
 					&& currentX < (mTouchWidth - mMainView.getScrollX())
 					&& mScroller.isFinished()) {
 				mCurrentX = currentX;
 				mReceiveAction = true;
-				L.e("start scroll by position");
 				mEnableClick = false;
 				return false;
 			} else {
@@ -128,17 +122,13 @@ public class FlyinAppMenu extends RelativeLayout {
 
 		int action = ev.getAction();
 		float currentX = ev.getX();
-		float currentY = ev.getY();
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
-			L.e("onDown");
-
 			if (mEnableClick) {
 				return super.onTouchEvent(ev);
 			}
 			break;
 		case MotionEvent.ACTION_MOVE:
-			L.e("onMove");
 			if (mEnableClick) {
 				return super.onTouchEvent(ev);
 			}
@@ -166,7 +156,6 @@ public class FlyinAppMenu extends RelativeLayout {
 		case MotionEvent.ACTION_UP:
 		case MotionEvent.ACTION_CANCEL:
 
-			L.e("onCacnel");
 			if (mEnableClick || !mReceiveAction) {
 				return super.onTouchEvent(ev);
 			}
@@ -176,9 +165,7 @@ public class FlyinAppMenu extends RelativeLayout {
 			VelocityTracker velocityTracker = mVelocityTracker;
 			velocityTracker.computeCurrentVelocity(1000);
 			int velocityX = (int) velocityTracker.getXVelocity();
-			L.e("velocityX:" + velocityX + ",CurrentX:"
-					+ mMainView.getScrollX());
-
+			
 			if (velocityX > 0) {
 				scrollOpen();
 			} else {

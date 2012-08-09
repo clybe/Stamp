@@ -17,7 +17,6 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,7 +35,7 @@ import android.widget.TextView;
 import com.moobox.stamp.utils.FileUtils;
 import com.moobox.stamp.utils.L;
 
-public class StampDetailActivity extends Activity implements OnClickListener {
+public class StampDetailActivity extends BaseActivity implements OnClickListener {
 
 	private TextView mTextTitle;
 	private ImageView mImageStamp;
@@ -82,7 +81,6 @@ public class StampDetailActivity extends Activity implements OnClickListener {
 				for (String key : sortKeys) {
 					Object object = jsObject.get(key);
 					if (object instanceof String) {
-						L.e(key + ":" + (String) object);
 						if (!key.equals("100图片")) {
 							addContent(key.substring(3), (String) object);
 						}
@@ -188,7 +186,6 @@ public class StampDetailActivity extends Activity implements OnClickListener {
 		protected String doInBackground(String... params) {
 			URL url;
 			try {
-				L.e("download url is " + params[0]);
 				url = new URL(params[0]);
 				con = (HttpURLConnection) url.openConnection();
 				con.setRequestMethod("GET");
@@ -197,7 +194,6 @@ public class StampDetailActivity extends Activity implements OnClickListener {
 
 				InputStream is = con.getInputStream();
 				int responseCode = con.getResponseCode();
-				L.e("responseCode is " + responseCode);
 
 				contentLength = con.getContentLength();
 
@@ -229,8 +225,6 @@ public class StampDetailActivity extends Activity implements OnClickListener {
 				mBitmap = BitmapFactory.decodeByteArray(imgdata, 0,
 						imgdata.length);
 				imgdata = null;
-
-				L.e("responseCode is " + responseCode);
 
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
