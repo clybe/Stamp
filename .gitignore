@@ -1,6 +1,8 @@
 /bin
 /gen
 /proguard
+/release
 /lint.xml
 /res/values-v11/.svn
 moobox
+ant.properties

@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/text_title"
-        android:layout_width="80dp"
+        android:layout_width="86dp"
         android:layout_height="35dp"
         android:gravity="center_vertical"
         android:paddingLeft="7dp"

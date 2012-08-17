@@ -10,6 +10,7 @@ package com.moobox.stamp.widgets;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.util.AttributeSet;
@@ -140,6 +141,7 @@ public class TouchImageView extends ImageView {
     @Override
     public void setImageBitmap(Bitmap bm) { 
         super.setImageBitmap(bm);
+        setBackgroundColor(Color.BLACK);
         if(bm != null) {
         	bmWidth = bm.getWidth();
         	bmHeight = bm.getHeight();
